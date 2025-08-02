@@ -1,0 +1,23 @@
+/* shared.css */
+a {
+  color: #e91e63;
+  text-decoration: none;
+}
+a:focus, a:hover {
+  text-decoration: underline;
+  outline: none;
+}
+
+body {
+  background-attachment: fixed;
+}
+
+button {
+  font-family: 'Inter', sans-serif;
+}
+
+@media (max-width: 600px) {
+  h1 {
+    font-size: 3rem !important;
+  }
+}

@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Gallery 🖼</title>
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Inter:wght@300;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="shared.css" />
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(135deg, #fceabb, #f8b500);
+      margin: 0;
+      padding-top: 60px;
+      color: #222;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+    }
+    nav {
+      position: fixed; top: 0; left: 0; width: 100%;
+      background: rgba(255, 255, 255, 0.85);
+      display: flex; justify-content: center; gap: 25px;
+      padding: 12px 0;
+      font-weight: 600;
+      font-size: 1.1rem;
+      z-index: 10000;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+      font-family: 'Inter', sans-serif;
+    }
+    nav a {
+      color: #e91e63;
+      text-decoration: none;
+      padding: 6px 12px;
+      border-radius: 6px;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+    nav a:hover, nav a.active {
+      background: #e91e63;
+      color: #fff;
+    }
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
+      gap: 15px;
+      max-width: 900px;
+      width: 100%;
+      padding: 20px;
+      box-sizing: border-box;
+    }
+    .gallery-grid img {
+      width: 100%;
+      border-radius: 12px;
+      cursor: pointer;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.15);
+      transition: transform 0.3s ease;
+    }
+    .gallery-grid img:hover {
+      transform: scale(1.05);
+    }
+    /* Lightbox Styles */
+    #lightbox {
+      position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+      background: rgba(0,0,0,0.8);
+      display: flex; justify-content: center; align-items: center;
+      opacity: 0; pointer-events: none;
+      transition: opacity 0.3s ease;
+      z-index: 10000;
+    }
+    #lightbox.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    #lightbox img {
+      max-width: 90vw;
+      max-height: 90vh;
+      border-radius: 12px;
+      box-shadow: 0 0 20px #fff;
+    }
+    #lightbox:focus {
+      outline: none;
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html">Home</a>
+  <a href="note.html">Sweet Note</a>
+  <a href="poetry.html">Shayari</a>
+  <a href="gallery.html" class="active">Gallery</a>
+</nav>
+
+<div class="gallery-grid" role="main" aria-label="Birthday photo gallery">
+  <img src="p4.jpg"Birthday Cake" tabindex="0" />
+  <img src="p2.jpg" alt="Balloons and decorations" tabindex="0" />
+  <img src="p3.jpg" alt="Birthday Gift" tabindex="0" />
+  <img src="p1.jpg" alt="Birthday Party" tabindex="0" />
+</div>
+
+<!-- Lightbox container -->
+<div id="lightbox" tabindex="-1" aria-hidden="true" role="dialog" aria-label="Image preview">
+  <img src="" alt="" />
+</div>
+
+<script>
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = lightbox.querySelector('img');
+  const galleryImgs = document.querySelectorAll('.gallery-grid img');
+
+  galleryImgs.forEach(img => {
+    img.addEventListener('click', () => {
+      lightboxImg.src = img.src;
+      lightboxImg.alt = img.alt;
+      lightbox.classList.add('active');
+      lightbox.setAttribute('aria-hidden', 'false');
+      lightbox.focus();
+    });
+    img.addEventListener('keypress', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        img.click();
+      }
+    });
+  });
+
+  lightbox.addEventListener('click', () => {
+    lightbox.classList.remove('active');
+    lightbox.setAttribute('aria-hidden', 'true');
+  });
+
+  lightbox.addEventListener('keydown', e => {
+    if (e.key === 'Escape') {
+      lightbox.classList.remove('active');
+      lightbox.setAttribute('aria-hidden', 'true');
+    }
+  });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Shayari ✍</title>
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Inter:wght@300;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="shared.css" />
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(135deg, #fceabb, #f8b500);
+      min-height: 100vh;
+      margin: 0;
+      color: #222;
+      padding-top: 60px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    nav {
+      position: fixed; top: 0; left: 0; width: 100%;
+      background: rgba(255, 255, 255, 0.85);
+      display: flex; justify-content: center; gap: 25px;
+      padding: 12px 0;
+      font-weight: 600;
+      font-size: 1.1rem;
+      z-index: 10000;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+      font-family: 'Inter', sans-serif;
+    }
+    nav a {
+      color: #e91e63;
+      text-decoration: none;
+      padding: 6px 12px;
+      border-radius: 6px;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+    nav a:hover, nav a.active {
+      background: #e91e63;
+      color: #fff;
+    }
+    .poem-container {
+      background: #fff;
+      border-radius: 12px;
+      padding: 30px 25px;
+      max-width: 650px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+      font-size: 1.3rem;
+      line-height: 1.7;
+      position: relative;
+      white-space: pre-wrap;
+      user-select: text;
+    }
+    .title {
+      font-family: 'Pacifico', cursive;
+      font-size: 2.2rem;
+      margin-bottom: 15px;
+      color: #e91e63;
+      text-align: center;
+    }
+    .button-copy {
+      display: block;
+      margin: 20px auto 0;
+      background: #e91e63;
+      color: white;
+      border: none;
+      padding: 10px 22px;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      user-select: none;
+    }
+    .button-copy:hover {
+      background: #c2185b;
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html">Home</a>
+  <a href="note.html">Sweet Note</a>
+  <a href="poetry.html" class="active">Shayari</a>
+  <a href="gallery.html">Gallery</a>
+</nav>
+
+<div class="poem-container" role="main">
+  <h1 class="title">Birthday Shayari</h1>
+  <pre id="shayari">
+ज़िन्दगी की हर राह पे, 
+तुम अपनी हिम्मत से चलती हो 💪
+दिल में शांति, दिमाग में खुद से लड़ती हो 🧘‍♀💭
+डाउट करती हो खुद पे, 
+पर हर मोड़ पे सीखती हो 📚
+छोटी छोटी बात को ओवरथिंक करती ,
+वही बड़ी बातों को भाड़ में जाए कह के निकल जाती हो 😤💨
+श्वेता के नाम से आजकल कुछ ज़्यादा ही चिढ़ाती हो 😡
+बोले जब सीटिंग करवाने को तो वो भी नहीं करवाती हो 🙄
+और स्वीटी कहने में पता नहीं कौन सा मज़ा पाती हो 😅💕
+म्यूजिक 🎶और भोले 🔱तुम्हारी लाइफ है ये हर रोज़ मुझे बताती हो 
+
+अब बस रहने देते हैं क्योंकि मुझे पता है 
+इतनी बड़ाई सुनकर कई बार पागल भी हो जाती हो 🤪
+😎😎😎😏😏😎😎😎
+
+  </pre>
+  <button class="button-copy" onclick="copyShayari()">Copy Shayari</button>
+</div>
+
+<script>
+  const shayariEl = document.getElementById('shayari');
+  const fullText = shayariEl.innerText.trim();
+  shayariEl.innerText = '';
+
+  let i = 0;
+  function typeWriter() {
+    if (i <= fullText.length) {
+      shayariEl.innerText = fullText.slice(0, i);
+      i++;
+      setTimeout(typeWriter, 40);
+    }
+  }
+  typeWriter();
+
+  function copyShayari() {
+    navigator.clipboard.writeText(fullText).then(() => {
+      alert('Shayari copied! ✍️');
+    });
+  }
+</script>
+
+</body>
+</html>

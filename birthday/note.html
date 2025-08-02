@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sweet Note 💌</title>
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Inter:wght@300;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="shared.css" />
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(135deg, #fceabb, #f8b500);
+      min-height: 100vh;
+      margin: 0;
+      color: #222;
+      padding-top: 60px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    nav {
+      position: fixed; top: 0; left: 0; width: 100%;
+      background: rgba(255, 255, 255, 0.85);
+      display: flex; justify-content: center; gap: 25px;
+      padding: 12px 0;
+      font-weight: 600;
+      font-size: 1.1rem;
+      z-index: 10000;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+      font-family: 'Inter', sans-serif;
+    }
+    nav a {
+      color: #e91e63;
+      text-decoration: none;
+      padding: 6px 12px;
+      border-radius: 6px;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+    nav a:hover, nav a.active {
+      background: #e91e63;
+      color: #fff;
+    }
+    .note-container {
+      background: #fff;
+      border-radius: 12px;
+      padding: 30px 25px;
+      max-width: 600px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+      font-size: 1.2rem;
+      line-height: 1.6;
+      position: relative;
+      user-select: text;
+    }
+    .title {
+      font-family: 'Pacifico', cursive;
+      font-size: 2.2rem;
+      margin-bottom: 15px;
+      color: #e91e63;
+      text-align: center;
+    }
+    .button-copy {
+      display: block;
+      margin: 20px auto 0;
+      background: #e91e63;
+      color: white;
+      border: none;
+      padding: 10px 22px;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      user-select: none;
+    }
+    .button-copy:hover {
+      background: #c2185b;
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html">Home</a>
+  <a href="note.html" class="active">Sweet Note</a>
+  <a href="poetry.html">Shayari</a>
+  <a href="gallery.html">Gallery</a>
+</nav>
+
+<div class="note-container" role="main">
+  <h1 class="title">A Personal Note</h1>
+  <p id="noteText">
+   🎉🎂 *Happy Birthday Anandita (Khushi)* 🎂🎉
+
+Aaj tumhara Happy Wala Birthday hai,
+aur Bhagwan Bhole Nath se meri yahi prarthana hai
+ki woh tumhe hamesha khush rakhein.
+Woh rakhenge bhi,
+kyunki tum sirf ek bahut acchi dost hi nahi,
+balki ek bahut acchi insaan bhi ho.
+Aur ache insaanon ko Bhagwan humesha khush rakhte hain.
+
+Thank you so much humesha mera saath dene ke liye.
+Jab bhi main pareshan hota hoon,
+main tumse baat karta hoon,
+aur wo pareshani jaise khatam ho jaati hai.
+Jaise jab main shop ko lekar pareshan tha,
+ya jab mujhe kisi ne dhokha diya tha,
+tab bhi tumne mera saath diya.
+Uske liye dil se thank you.
+
+Tum meri wo dost ho jisse main sab kuch share karta hoon.
+Tum sab sunti ho, samajhti ho,
+aur hamesha sahi suggestion deti ho.
+
+Main kabhi-kabhi zyada irritate karta hoon,
+uske liye sorry.
+Aur agar meri kisi baat ka bura laga ho,
+toh uske liye bhi sorry.
+
+Aur last mein ek baar phir se —
+🎉🎂 *Happy Birthday Khushi* 🎂🎉
+Tum khush raho, mast raho,
+aur “ghanta”, “bhaad” jaise words
+apne mast style mein aise hi use karti raho 😄
+
+  </p>
+  <button class="button-copy" onclick="copyNote()">Copy Note</button>
+</div>
+
+<script>
+  function copyNote() {
+    const noteText = document.getElementById('noteText').innerText;
+    navigator.clipboard.writeText(noteText).then(() => {
+      alert('Note copied to clipboard! ❤️');
+    });
+  }
+</script>
+
+</body>
+</html>

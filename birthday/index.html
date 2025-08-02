@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Happy Birthday Anandita 🎉</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Pacifico&display=swap"
+    rel="stylesheet"
+  />
+  <style>
+    * {
+      margin: 0; padding: 0; box-sizing: border-box;
+    }
+    body {
+      font-family: 'Montserrat', sans-serif;
+      min-height: 100vh;
+      background: linear-gradient(135deg, #ff9a9e, #fad0c4, #fbc2eb);
+      background-size: 400% 400%;
+      animation: bgAnimation 10s ease infinite;
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-top: 80px;
+      overflow-x: hidden;
+    }
+    @keyframes bgAnimation {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    nav {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%;
+      height: 60px;
+      background: rgba(0, 0, 0, 0.3);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 30px;
+      z-index: 1000;
+      font-weight: 600;
+      backdrop-filter: blur(10px);
+    }
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      padding: 8px 15px;
+      border-radius: 6px;
+      transition: background-color 0.3s ease;
+    }
+    nav a:hover, nav a.active {
+      background: rgba(255, 255, 255, 0.8);
+      color: #ff4081;
+    }
+    h1 {
+      font-family: 'Pacifico', cursive;
+      font-size: 3.5rem;
+      text-align: center;
+      text-shadow: 0 3px 8px rgba(0,0,0,0.4);
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.8s ease-out;
+    }
+    h1.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    /* Balloons */
+    .balloon {
+      position: absolute;
+      bottom: -120px;
+      width: 60px;
+      height: 80px;
+      border-radius: 50% 50% 50% 50%;
+      opacity: 0.9;
+      filter: drop-shadow(0 3px 3px rgba(0,0,0,0.15));
+      animation-timing-function: ease-in-out;
+      animation-iteration-count: infinite;
+      animation-direction: alternate;
+      user-select: none;
+    }
+    .balloon.red { background: #ff4b5c; }
+    .balloon.blue { background: #247ba0; }
+    .balloon.green { background: #70c1b3; }
+    .balloon.yellow { background: #ffea00; }
+    .balloon.purple { background: #9b59b6; }
+    .balloon1 { left: 8%; animation: floatUp1 6s infinite; animation-delay: 0s; }
+    .balloon2 { left: 28%; animation: floatUp2 7.2s infinite; animation-delay: 1.2s; }
+    .balloon3 { left: 48%; animation: floatUp3 6.8s infinite; animation-delay: 0.5s; }
+    .balloon4 { left: 68%; animation: floatUp1 7.5s infinite; animation-delay: 2s; }
+    .balloon5 { left: 85%; animation: floatUp2 6.3s infinite; animation-delay: 1s; }
+    @keyframes floatUp1 {
+      0% { transform: translateY(0) scale(1); opacity: 0.9; }
+      100% { transform: translateY(-350px) scale(1.1); opacity: 0; }
+    }
+    @keyframes floatUp2 {
+      0% { transform: translateY(0) scale(1) rotate(-5deg); opacity: 0.85; }
+      100% { transform: translateY(-320px) scale(1.05) rotate(10deg); opacity: 0; }
+    }
+    @keyframes floatUp3 {
+      0% { transform: translateY(0) scale(1) rotate(5deg); opacity: 0.8; }
+      100% { transform: translateY(-360px) scale(1.15) rotate(-10deg); opacity: 0; }
+    }
+    /* Confetti */
+    #confetti-container {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw; height: 100vh;
+      pointer-events: none;
+      z-index: 9999;
+    }
+    .confetti {
+      position: absolute;
+      width: 10px; height: 10px;
+      opacity: 0.9;
+      border-radius: 3px;
+      animation: confettiFall linear infinite, confettiRotate linear infinite;
+    }
+    .confetti.red { background-color: #ff4b5c; }
+    .confetti.blue { background-color: #247ba0; }
+    .confetti.green { background-color: #70c1b3; }
+    .confetti.yellow { background-color: #ffea00; }
+    .confetti.purple { background-color: #9b59b6; }
+    @keyframes confettiFall {
+      0% { transform: translateY(-20px); opacity: 1; }
+      100% { transform: translateY(110vh); opacity: 0; }
+    }
+    @keyframes confettiRotate {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    /* Mobile responsive */
+    @media (max-width: 600px) {
+      h1 { font-size: 2.5rem; margin: 20px; }
+      .balloon { width: 40px; height: 55px; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="active">Home</a>
+  <a href="note.html">Sweet Note</a>
+  <a href="poetry.html">Shayari</a>
+  <a href="gallery.html">Gallery</a>
+</nav>
+
+<h1 id="mainTitle">🎉 Happy Birthday Anandita 😎 🎉</h1>
+<br>
+<br>
+<video src="vid.mp4"   width="400" height="250"controls muted loop autoplay></video>
+
+<!-- Balloons -->
+<div class="balloon balloon1 red"></div>
+<div class="balloon balloon2 blue"></div>
+<div class="balloon balloon3 green"></div>
+<div class="balloon balloon4 yellow"></div>
+<div class="balloon balloon5 purple"></div>
+
+<!-- Confetti -->
+<div id="confetti-container"></div>
+
+<script>
+  // Fade-in heading
+  window.addEventListener('DOMContentLoaded', () => {
+    document.getElementById('mainTitle').classList.add('visible');
+  });
+
+  const confettiContainer = document.getElementById('confetti-container');
+  const colors = ['red', 'blue', 'green', 'yellow', 'purple'];
+
+  function createConfetti() {
+    const confetti = document.createElement('div');
+    confetti.classList.add('confetti');
+    const color = colors[Math.floor(Math.random() * colors.length)];
+    confetti.classList.add(color);
+    confetti.style.left = Math.random() * window.innerWidth + 'px';
+    const size = 6 + Math.random() * 6;
+    confetti.style.width = size + 'px';
+    confetti.style.height = size + 'px';
+    const duration = 3000 + Math.random() * 3000;
+    confetti.style.animationDuration = `${duration}ms, ${duration}ms`;
+    confettiContainer.appendChild(confetti);
+    setTimeout(() => confetti.remove(), duration);
+  }
+  setInterval(createConfetti, 150);
+</script>
+
+</body>
+</html>

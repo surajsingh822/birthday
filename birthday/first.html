@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0" />
+<title>Happy Birthday 🎉</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Raleway:wght@300;600;800&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --bg1: #ff9a9e;
+    --bg2: #fad0c4;
+    --radius: 18px;
+    --shadow: 0 12px 40px -10px rgba(255,64,129,0.35);
+    --transition: 0.35s cubic-bezier(.25,.8,.5,1);
+  }
+  *{box-sizing:border-box;}
+  body {
+    margin:0;
+    font-family: 'Raleway', system-ui,-apple-system,BlinkMacSystemFont,sans-serif;
+    background: linear-gradient(135deg,var(--bg1),var(--bg2)) fixed;
+    min-height:100vh;
+    color:#222;
+    overflow-x:hidden;
+    position: relative;
+  }
+  .container {
+    max-width: 1040px;
+    padding: 1rem 1rem 4rem;
+    margin: auto;
+    position: relative;
+    z-index: 10;
+  }
+  .header {
+    text-align:center;
+    padding: 2rem 0 0.5rem;
+    position: relative;
+  }
+  .title {
+    font-family: 'Pacifico', cursive;
+    font-size: clamp(2.2rem, 6vw, 3.6rem);
+    margin: 0;
+    color: #fff;
+    text-shadow: 0 10px 25px rgba(0,0,0,0.2);
+  }
+  .sub {
+    margin: 6px 0;
+    font-weight:600;
+    letter-spacing:0.5px;
+    color:#fff;
+  }
+  .countdown {
+    margin-top: 8px;
+    display:flex;
+    justify-content:center;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    font-weight:700;
+    color:#fff;
+    letter-spacing:1px;
+    font-size:0.9rem;
+  }
+  .countdown .box {
+    background: rgba(255,255,255,0.15);
+    padding: 10px 16px;
+    border-radius: 12px;
+    min-width:70px;
+    position: relative;
+    backdrop-filter: blur(8px);
+  }
+  .section {
+    background: rgba(255,255,255,0.9);
+    border-radius: var(--radius);
+    padding: 28px 26px;
+    margin: 2rem 0;
+    box-shadow: var(--shadow);
+    position: relative;
+    overflow: hidden;
+    animation: lift 0.9s ease-out both;
+  }
+  @keyframes lift {
+    from { transform: translateY(18px); opacity:0; }
+    to { transform: translateY(0); opacity:1; }
+  }
+  h2 {
+    margin-top:0;
+    font-size:1.75rem;
+    position: relative;
+    color:#ff4081;
+    display:inline-block;
+  }
+  .note, .poetry { line-height:1.55; font-size:1rem; }
+  .flex {
+    display:flex;
+    gap:24px;
+    flex-wrap:wrap;
+  }
+  .card {
+    flex:1 1 300px;
+    position: relative;
+  }
+  .video-wrapper {
+    position: relative;
+    padding-top: 56.25%;
+    border-radius: 12px;
+    overflow:hidden;
+    box-shadow:0 25px 60px -10px rgba(0,0,0,0.2);
+  }
+  .video-wrapper iframe {
+    position:absolute;
+    top:0;left:0;
+    width:100%;
+    height:100%;
+    border:0;
+    border-radius:12px;
+  }
+  .gallery {
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(120px,1fr));
+    gap:12px;
+    margin-top:8px;
+  }
+  .gallery img {
+    width:100%;
+    height:120px;
+    object-fit:cover;
+    border-radius:14px;
+    cursor:pointer;
+    transition: transform var(--transition);
+    box-shadow: 0 15px 40px -5px rgba(0,0,0,0.15);
+  }
+  .gallery img:hover { transform: scale(1.05); }
+  .lightbox {
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,0.85);
+    display:none;
+    align-items:center;
+    justify-content:center;
+    padding:12px;
+    z-index:999;
+    flex-direction:column;
+  }
+  .lightbox img {
+    max-width: 100%;
+    max-height: 80vh;
+    border-radius:12px;
+    user-select:none;
+    touch-action:none;
+  }
+  .lightbox .close {
+    position:absolute;
+    top:16px;
+    right:16px;
+    background:rgba(255,255,255,0.9);
+    border:none;
+    padding:8px 12px;
+    border-radius:999px;
+    cursor:pointer;
+    font-weight:700;
+  }
+  .music-control {
+    position:fixed;
+    bottom:18px;
+    right:18px;
+    background:rgba(255,255,255,0.95);
+    border-radius:50px;
+    padding:12px 16px;
+    display:flex;
+    gap:10px;
+    align-items:center;
+    font-size:0.85rem;
+    box-shadow:0 20px 50px -10px rgba(0,0,0,0.2);
+    backdrop-filter: blur(8px);
+    z-index: 20;
+  }
+  .btn {
+    background: #ff4081;
+    color:#fff;
+    padding:12px 22px;
+    border:none;
+    border-radius:999px;
+    cursor:pointer;
+    font-weight:600;
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    transition: transform .2s ease;
+    text-decoration:none;
+  }
+  .btn:active { transform: scale(.95); }
+  .small {
+    font-size:0.85rem;
+    opacity:.85;
+  }
+  .share-row {
+    display:flex;
+    gap:16px;
+    flex-wrap:wrap;
+    margin-top:8px;
+  }
+  .swipe-hint {
+    margin-top:4px;
+    font-size:0.75rem;
+    color:#555;
+  }
+  /* Animated floating shapes */
+  .floaters {
+    pointer-events:none;
+    position:fixed;
+    inset:0;
+    z-index:1;
+    overflow:hidden;
+  }
+  .floater {
+    position:absolute;
+    will-change:transform,opacity;
+    opacity:0.8;
+    font-size:1.1rem;
+    user-select:none;
+    animation: floatmove linear infinite;
+    mix-blend-mode: screen;
+  }
+  @keyframes floatmove {
+    0% { transform: translateY(0) scale(1); }
+    100% { transform: translateY(-110vh) scale(.8); }
+  }
+  /* Responsive tweaks */
+  @media (max-width: 900px){
+    .flex { flex-direction:column; }
+    .music-control { bottom:8px; right:8px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Floating animated hearts/balloons -->
+<div class="floaters" aria-hidden="true"></div>
+
+<div class="container">
+  <div class="header">
+    <h1 class="title" id="title">Happy Birthday!</h1>
+    <div class="sub" id="subtext">Celebrating your special day</div>
+    <div class="countdown" aria-label="Countdown to birthday">
+      <div class="box"><div id="days">--</div><div class="small">Days</div></div>
+      <div class="box"><div id="hours">--</div><div class="small">Hours</div></div>
+      <div class="box"><div id="minutes">--</div><div class="small">Minutes</div></div>
+      <div class="box"><div id="seconds">--</div><div class="small">Seconds</div></div>
+    </div>
+  </div>
+
+  <!-- Sweet note & share -->
+  <section class="section">
+    <div class="flex">
+      <div class="card" style="flex:2;">
+        <h2>💌 A Sweet Note</h2>
+        <p class="note" id="note">You are the light that brightens so many lives. Wishing you laughter, warmth, and memories that stay forever. Happy Birthday!</p>
+        <div class="share-row">
+          <button class="btn" onclick="navigator.clipboard.writeText(window.location.href).then(()=>alert('Link copied!'))">
+            Share Love
+          </button>
+          <button class="btn" onclick="alert('Placeholder: Open wish form')">
+            Send a Wish
+          </button>
+        </div>
+      </div>
+      <div class="card" style="flex:1;">
+        <h2>🎁 Quick Info</h2>
+        <p class="small"><strong>Name:</strong> <span id="personName">Priya</span></p>
+        <p class="small"><strong>Birthday:</strong> <span id="personDate">15 August 2025</span></p>
+        <p class="small"><strong>Age turning:</strong> <span id="ageTurning">--</span></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Poetry -->
+  <section class="section">
+    <h2>✍ Birthday Poetry</h2>
+    <p class="poetry" id="poetry">
+      फूलों सा महकता रहे जीवन तुम्हारा,  
+      खुशियों से भरा रहे आंगन तुम्हारा,  
+      दुआ है हमारी, ये सितारे करें रौशन,  
+      जन्मदिन मुबारक हो प्यारे तुम्हारा। 🎂
+    </p>
+  </section>
+
+  <!-- Video wishes -->
+  <section class="section">
+    <h2>🎥 Video Wishes</h2>
+    <div class="video-wrapper">
+      <iframe id="wishVideo" src="https://www.youtube.com/embed/dQw4w9WgXcQ" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen title="Birthday Wishes Video"></iframe>
+    </div>
+  </section>
+
+  <!-- Photo gallery -->
+  <section class="section">
+    <h2>🖼 Memories Gallery</h2>
+    <p class="small">Tap / click to enlarge. Swipe left/right on mobile.</p>
+    <div class="gallery" id="gallery">
+      <!-- placeholder images; replace src with real photos -->
+      <img data-index="0" src="https://source.unsplash.com/400x300/?birthday,cake" alt="Memory 1" />
+      <img data-index="1" src="https://source.unsplash.com/400x300/?friends,party" alt="Memory 2" />
+      <img data-index="2" src="https://source.unsplash.com/400x300/?celebration" alt="Memory 3" />
+      <img data-index="3" src="https://source.unsplash.com/400x300/?balloons" alt="Memory 4" />
+    </div>
+  </section>
+</div>
+
+<!-- Lightbox overlay -->
+<div class="lightbox" id="lightbox" aria-modal="true" role="dialog">
+  <button class="close" aria-label="Close">&times;</button>
+  <img id="lbImage" src="" alt="Expanded photo" />
+  <div class="swipe-hint">Swipe left/right to navigate</div>
+</div>
+
+<!-- Music control -->
+<div class="music-control" aria-label="Background music control">
+  <div id="music-icon">🎵</div>
+  <div style="flex:1;">
+    <div style="font-weight:600;">Background Melody</div>
+    <div class="small">Tap to toggle</div>
+  </div>
+  <button class="btn" id="muteBtn" style="padding:6px 14px; font-size:0.75rem;">Mute</button>
+</div>
+
+<!-- Audio -->
+<audio id="bgAudio" loop>
+  <source src="https://www.bensound.com/bensound-music/bensound-sunny.mp3" type="audio/mp3" />
+</audio>
+
+<!-- Confetti & utils -->
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+<script>
+  /********** CONFIGURE HERE **********/
+  const config = {
+    birthdayName: "Priya", // display name
+    birthdayDate: "2025-08-15", // ISO YYYY-MM-DD
+    noteText: "तुम्हारी मुस्कान हर दिल को रोशन कर दे। यह साल तुम्हारे लिए नई उम्मीदें और ढेर सारी खुशियाँ लाए। जन्मदिन की ढेरों शुभकामनाएं! 🎉",
+    poetryText: "रंग-बिरंगे ख्वाबों से सजा रहे जीवन तुम्हारा, हर पल मुस्कान से भरा हो दिल तुम्हारा। सफ़र हो प्यार भरा, खुशियाँ बनें साथी, जन्मदिन मुबारक हो दिल से खूबसूरत तुम्हारा। 🎂",
+    videoID: "dQw4w9WgXcQ", // replace with actual YouTube video ID
+    photos: [
+      "https://source.unsplash.com/600x450/?birthday,cake",
+      "https://source.unsplash.com/600x450/?friends,party",
+      "https://source.unsplash.com/600x450/?celebration",
+      "https://source.unsplash.com/600x450/?balloons"
+    ]
+  };
+  /**********************************/
+
+  // Set dynamic fields
+  document.getElementById("title").innerText = `Happy Birthday ${config.birthdayName}! 🎂`;
+  document.getElementById("subtext").innerText = `Celebrating your special day`;
+  document.getElementById("personName").innerText = config.birthdayName;
+  const dayjsParse = (s) => new Date(s + "T00:00:00");
+  const bday = dayjsParse(config.birthdayDate);
+  const options = { year: 'numeric', month: 'long', day: 'numeric' };
+  document.getElementById("personDate").innerText = bday.toLocaleDateString('en-IN', options);
+  document.getElementById("note").innerText = config.noteText;
+  document.getElementById("poetry").innerText = config.poetryText;
+  document.getElementById("wishVideo").src = `https://www.youtube.com/embed/${config.videoID}?rel=0&autoplay=0`;
+  
+  // Age calculation
+  function calculateAge(born, reference) {
+    let age = reference.getFullYear() - born.getFullYear();
+    const m = reference.getMonth() - born.getMonth();
+    if (m < 0 || (m === 0 && reference.getDate() < born.getDate())) age--;
+    return age + 1; // turning age
+  }
+  const today = new Date();
+  document.getElementById("ageTurning").innerText = calculateAge(bday, today);
+
+  // Countdown
+  function updateCountdown() {
+    const now = new Date();
+    let target = new Date(bday);
+    target.setFullYear(now.getFullYear());
+    if (target < now) target.setFullYear(now.getFullYear() + 1); // next occurrence
+    const diff = target - now;
+    const d = Math.floor(diff / (1000*60*60*24));
+    const h = Math.floor((diff / (1000*60*60)) % 24);
+    const m = Math.floor((diff / (1000*60)) % 60);
+    const s = Math.floor((diff / 1000) % 60);
+    document.getElementById("days").innerText = d;
+    document.getElementById("hours").innerText = String(h).padStart(2,'0');
+    document.getElementById("minutes").innerText = String(m).padStart(2,'0');
+    document.getElementById("seconds").innerText = String(s).padStart(2,'0');
+  }
+  updateCountdown();
+  setInterval(updateCountdown, 1000);
+
+  // Confetti launch on load
+  window.addEventListener('load', () => {
+    confetti({
+      particleCount: 200,
+      spread: 140,
+      origin: { y: 0.6 }
+    });
+  });
+
+  // Photo gallery population & lightbox
+  const gallery = document.getElementById("gallery");
+  gallery.innerHTML = "";
+  config.photos.forEach((src, idx) => {
+    const img = document.createElement("img");
+    img.src = src;
+    img.alt = `Memory ${idx+1}`;
+    img.dataset.index = idx;
+    gallery.appendChild(img);
+  });
+
+  const lightbox = document.getElementById("lightbox");
+  const lbImage = document.getElementById("lbImage");
+  let currentIndex = 0;
+
+  function openLightbox(idx) {
+    currentIndex = idx;
+    lbImage.src = config.photos[currentIndex];
+    lightbox.style.display = "flex";
+  }
+  function closeLightbox() {
+    lightbox.style.display = "none";
+  }
+  function showNext(delta) {
+    currentIndex = (currentIndex + delta + config.photos.length) % config.photos.length;
+    lbImage.src = config.photos[currentIndex];
+  }
+
+  gallery.addEventListener("click", (e) => {
+    if (e.target.tagName === "IMG") openLightbox(parseInt(e.target.dataset.index));
+  });
+  document.querySelector(".lightbox .close").addEventListener("click", closeLightbox);
+  lightbox.addEventListener("click", (e) => {
+    if (e.target === lightbox) closeLightbox();
+  });
+
+  // Swipe support
+  let startX = 0;
+  let isTouch = false;
+  lbImage.addEventListener("touchstart", (e) => {
+    isTouch = true;
+    startX = e.touches[0].clientX;
+  });
+  lbImage.addEventListener("touchend", (e) => {
+    if (!isTouch) return;
+    const endX = e.changedTouches[0].clientX;
+    const diff = endX - startX;
+    if (diff > 50) showNext(-1);
+    else if (diff < -50) showNext(1);
+    isTouch = false;
+  });
+
+  // Keyboard navigation
+  document.addEventListener("keydown", (e) => {
+    if (lightbox.style.display === "flex") {
+      if (e.key === "ArrowRight") showNext(1);
+      if (e.key === "ArrowLeft") showNext(-1);
+      if (e.key === "Escape") closeLightbox();
+    }
+  });
+
+  // Floating shapes generator
+  const shapes = ["🎈","💖","🎉","✨","🥳"];
+  const floatersContainer = document.querySelector(".floaters");
+  function spawnFloater() {
+    const el = document.createElement("div");
+    el.className = "floater";
+    el.innerText = shapes[Math.floor(Math.random()*shapes.length)];
+    const size = Math.random() * 28 + 18; // font size
+    el.style.fontSize = size + "px";
+    el.style.left = Math.random()*100 + "%";
+    el.style.animationDuration = (Math.random()*12 + 8) + "s";
+    el.style.opacity = Math.random()*0.6 + 0.4;
+    floatersContainer.appendChild(el);
+    setTimeout(() => {
+      el.remove();
+    }, 15000);
+  }
+  setInterval(spawnFloater, 800);
+  // seed some early
+  for(let i=0;i<8;i++) setTimeout(spawnFloater, i*300);
+
+  // Music toggle
+  const audio = document.getElementById("bgAudio");
+  const muteBtn = document.getElementById("muteBtn");
+  let playing = false;
+
+  function updateMuteUI() {
+    muteBtn.innerText = audio.paused ? 'Play' : 'Mute';
+  }
+  muteBtn.addEventListener("click", () => {
+    if (audio.paused) {
+      audio.play().catch(()=>{}); // some browsers require gesture
+    } else audio.pause();
+    updateMuteUI();
+  });
+  audio.addEventListener("play", ()=>{ updateMuteUI(); });
+  audio.addEventListener("pause", ()=>{ updateMuteUI(); });
+  // try autoplay (may be blocked)
+  audio.volume = 0.65;
+  audio.play().catch(()=>{ /* user can tap */ });
+
+  updateMuteUI();
+</script>
+</body>
+</html>
+
